@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="600" height="400" style="border:1px solid #000000;"></canvas>
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
+      var context = canvas.getContext('2d');
+      var radius = 20;
+      var xIncrement = 1;
+      var yIncrement = 1;
+      moveCircle (centerX, centerY);
+
+      function drawCircle(centerX, centerY)
+      {
+		  context.beginPath();
+		  context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+		  context.fillStyle = 'green';
+		  context.fill();
+		  context.lineWidth = 5;
+		  context.strokeStyle = '#003300';
+		  context.stroke();
+		  return;
+      }
+      
+      function moveCircle()
+      {
+        centerX = centerX + xIncrement;
+        centerY = centerY + yIncrement;
+        drawCircle (centerX, centerY);
+        
+        if (centerY >= 380) yIncrement = -1;
+        if (centerX >= 580) xIncrement = -1;
+        if (centerX <= 20) xIncrement = 1;
+        if (centerY <= 20) yIncrement = 1;
+        
+        var myVar = setTimeout(moveCircle, 2);
+      }
+    </script>
+  </body>
+</html>      
